@@ -15,7 +15,7 @@ heuristics = [hh.Badcharacter(p, alphabet), hh.Goodsuffix(p)]
 
 search = ss.Stringsearch(heuristics)
 sol = search.find(t, p)
-print("Occurence indexes:{}".format(sol))
+print("Number of occurences: {0}, indexes:{1}".format(len(sol), sol))
 
 
 
