@@ -17,7 +17,7 @@ class IHeuristicstrategy:
 
 
 
-import util.bad_char_util as bc
+import business_logic.util.bad_char_util as bc
 
 class Badcharacter(IHeuristicstrategy):
     """Class implements the 'bad character' heuristic rule """
@@ -50,7 +50,7 @@ class Badcharacter(IHeuristicstrategy):
 
 
 
-import util.good_suffix_util as gs
+import business_logic.util.good_suffix_util as gs
     
 class Goodsuffix(IHeuristicstrategy):
     """ Class implements the good suffix strategy"""
