@@ -1,0 +1,2 @@
+Heuristic,Word,Time,Memory
+<bound method Search.get_heuristics of <search.Search object at 0x00000223385ADF30>>,<bound method Search.get_word of <search.Search object at 0x00000223385ADF30>>,<bound method Search.get_execution_time of <search.Search object at 0x00000223385ADF30>>,<bound method Search.get_execution_memory of <search.Search object at 0x00000223385ADF30>>

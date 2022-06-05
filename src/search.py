@@ -11,9 +11,11 @@ class Search:
         self.__file_path = file_path
         self.__word = word
         self.__heuristics = heuristics
+        self.__time = 0
+        self.__memory = (0, 0)
 
     def __init__(self, text, word, heuristics):
-        """Constructor with text for searching"""
+        """Constructor with text for searching. Used for testings."""
         self.__text = text
         self.__word = word
         self.__heuristics = heuristics
@@ -45,16 +47,30 @@ class Search:
         tracemalloc.stop()
 
         self.__time = end_time - start_time
+        # memory at its peak - memory at start point
         self.__memory = memory[1] - memory[0]
 
         print("Number of occurences: {0}, indexes:{1}".format(len(sol), sol))
         print("Execution time: {time:.10f}, execution memory peak: {mem} KiB".format(time = self.__time, mem = self.__memory))
 
     def get_execution_time(self):
-        return self.__time
+        # TODO what f* ??? I want to see time like we get in line 54
+        return "{10f}".format(self.__time)
 
     def get_execution_memory(self):
-        return self.__memory
+        # TODO what f* ??? I want to see memory like we get in line 54 but without KiB
+        return "{}".format(self.__memory)
+
+    def get_word(self):
+        # TODO what f* ??? I want to see memory like we get in line 54 but without KiB
+        return self.__word
+
+    def get_heuristics(self):
+        h = type(self.__heuristics[0])
+        if len(self.__heuristics) > 1:
+            h += " + " + type(self.__heuristics[0])
+        # TODO what f* ??? I want to see for example Badcharacter + Goodsuffix
+        return "{}".format(h)
 
 
 
