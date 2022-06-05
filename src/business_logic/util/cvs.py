@@ -1,9 +1,7 @@
 import csv
-# create a new file, 
-#open to write mode, 
-#because we're creating a file object we open with newline=''
 
 class Cvs():
+    """Class to create cvs file for easier graph creation"""
     @staticmethod
     def write(cvs_file_path, programs):
         with open(cvs_file_path, 'w') as csvfile:

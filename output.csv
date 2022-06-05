@@ -1,2 +1,14 @@
-Heuristic,Word,Time,Memory
-<bound method Search.get_heuristics of <search.Search object at 0x00000223385ADF30>>,<bound method Search.get_word of <search.Search object at 0x00000223385ADF30>>,<bound method Search.get_execution_time of <search.Search object at 0x00000223385ADF30>>,<bound method Search.get_execution_memory of <search.Search object at 0x00000223385ADF30>>
+Heuristic,Word,Time,Memory
+
+h1,WORD,0.012345,3450
+h2,WORD,0.212345,5450
+h3,WORD,1.012345,9050
+h4,WORD,0.012345,2450
+h1,WORD2,0.012345,3450
+h2,WORD2,0.212345,5450
+h3,WORD2,1.012345,9050
+h4,WORD2,0.012345,2450
+h1,WORD3,0.012345,3450
+h2,WORD3,0.212345,5450
+h3,WORD3,1.012345,9050
+h4,WORD3,0.012345,2450
