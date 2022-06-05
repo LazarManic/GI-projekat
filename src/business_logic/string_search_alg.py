@@ -2,7 +2,6 @@
 
 
 import numpy as np
-import time
 
 class Stringsearch():
     """Class is used for implementing a heuristic based string search,
