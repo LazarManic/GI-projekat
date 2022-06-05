@@ -54,22 +54,18 @@ class Search:
         print("Execution time: {time:.10f}, execution memory peak: {mem} KiB".format(time = self.__time, mem = self.__memory))
 
     def get_execution_time(self):
-        # TODO what f* ??? I want to see time like we get in line 54
-        return "{10f}".format(self.__time)
+        return "{time:.10f}".format(time=self.__time)
 
     def get_execution_memory(self):
-        # TODO what f* ??? I want to see memory like we get in line 54 but without KiB
         return "{}".format(self.__memory)
 
     def get_word(self):
-        # TODO what f* ??? I want to see memory like we get in line 54 but without KiB
         return self.__word
 
     def get_heuristics(self):
-        h = type(self.__heuristics[0])
+        h = type(self.__heuristics[0]).__name__
         if len(self.__heuristics) > 1:
-            h += " + " + type(self.__heuristics[0])
-        # TODO what f* ??? I want to see for example Badcharacter + Goodsuffix
+            h += " + " + type(self.__heuristics[1]).__name__
         return "{}".format(h)
 
 

@@ -30,9 +30,7 @@ t = 'CTTATCGATGAAACAACTGAATCGTACTCAGGTCA'
 program = s.Search(text=t, word=args.search, heuristics=heuristics)
 program.do_magic()
 
-import business_logic.util.cvs as c
 import business_logic.util.graph as g
 
-c.Cvs().write("output.csv", [program])
-# g.Graph().Drive("output.csv")
+g.Graph().Drive([program])
 
