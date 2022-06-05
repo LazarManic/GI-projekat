@@ -1,1 +1,2 @@
 *.fna
+__pycache__/
