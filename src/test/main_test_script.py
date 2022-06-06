@@ -27,7 +27,7 @@ alphabet = 'ACGTN'
 
 for word in words:
     # TODO add all heuristics
-    programs.append(s.Search(file_path=file, word=word, heuristics=[hh.Badcharacter(word, alphabet), hh.Goodsuffix(word)]))
+    programs.append(s.Search(word=word, heuristics=[hh.Badcharacter(word, alphabet), hh.Goodsuffix(word)], text_or_file_path=file, is_file_path=True))
     programs[len(programs) - 1].do_magic()
 
 # ###################### Test set 2 #########################
@@ -40,7 +40,7 @@ for word in words:
 
 # for word in words:
     # TODO add all heuristics
-    # programs.append(s.Search(file_path=file, word=word, heuristics=[hh.Badcharacter(word, alphabet), hh.Goodsuffix(word)]))
+    # programs.append(s.Search(word=word, heuristics=[hh.Badcharacter(word, alphabet), hh.Goodsuffix(word)], text_or_file_path=file, is_file_path=True))
     # programs[len(programs) - 1].do_magic()
 
 
@@ -56,7 +56,7 @@ for word in words:
 
 # for word in words:
     # TODO add all heuristics
-    # programs.append(s.Search(file_path=file, word=word, heuristics=[hh.Badcharacter(word, alphabet), hh.Goodsuffix(word)]))
+    # programs.append(s.Search(word=word, heuristics=[hh.Badcharacter(word, alphabet), hh.Goodsuffix(word)], text_or_file_path=file, is_file_path=True))
     # programs[len(programs) - 1].do_magic()
 
 

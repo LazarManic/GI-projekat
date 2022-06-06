@@ -27,7 +27,7 @@ import search as s
 ## Create strings for matching
 # TODO try FASTA file
 t = 'CTTATCGATGAAACAACTGAATCGTACTCAGGTCA'
-program = s.Search(text=t, word=args.search, heuristics=heuristics)
+program = s.Search(text_or_file_path=t, word=args.search, heuristics=heuristics, is_file_path=False)
 program.do_magic()
 
 import business_logic.util.graph as g

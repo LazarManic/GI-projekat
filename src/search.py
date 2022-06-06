@@ -7,24 +7,18 @@ import business_logic.heuristics as hh
 class Search():
     """Class for searching word in tekst provided in FASTA file format"""
      
-    def __init__(self, file_path:str, word:str, heuristics:hh.IHeuristicstrategy):
-        """Constructor with FASTA file path"""
-        self.__file_path = file_path
+    def __init__(self, text_or_file_path:str, word:str, heuristics:hh.IHeuristicstrategy, is_file_path: bool):
+        """Constructor with FASTA file path or with text"""
         self.word = word
         self.__heuristics = heuristics
         self.__time = 0
         self.__memory = (0, 0)
         self.__search = ss.Stringsearch(self.__heuristics)
-        _, self.text = Search.read_fasta(self.__file_path)
-    
-    def __init__(self, text:str, word:str, heuristics:hh.IHeuristicstrategy):
-        """Constructor with text"""
-        self.text = text
-        self.word = word
-        self.__heuristics = heuristics
-        self.__time = 0
-        self.__memory = (0, 0)
-        self.__search = ss.Stringsearch(self.__heuristics)
+        if is_file_path:
+            self.__file_path = text_or_file_path
+            _, self.text = Search.read_fasta(self.__file_path)
+        else:
+           self.text = text_or_file_path
 
     @staticmethod
     def read_fasta(file_path:str):
