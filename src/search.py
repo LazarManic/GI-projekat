@@ -16,13 +16,16 @@ class Search():
         self.__memory = (0, 0)
         self.__search = ss.Stringsearch(self.__heuristics)
         _, self.text = Search.read_fasta(self.__file_path)
- 
-
-    def open_file(self):
-        """Open FASTA file"""
-        # TODO
-        pass
     
+    def __init__(self, text:str, word:str, heuristics:hh.IHeuristicstrategy):
+        """Constructor with text"""
+        self.text = text
+        self.word = word
+        self.__heuristics = heuristics
+        self.__time = 0
+        self.__memory = (0, 0)
+        self.__search = ss.Stringsearch(self.__heuristics)
+
     @staticmethod
     def read_fasta(file_path:str):
         """Read bytes? from FASTA file"""
@@ -45,7 +48,6 @@ class Search():
         tracemalloc.start()
         start_time = time.time()
 
-        # TODO: Replace text with file content?
         # run the algorithm
         sol = self.__search.find(self.text, self.word)
 
@@ -68,7 +70,6 @@ class Search():
         return self.__memory
 
     def get_word(self):
-        # TODO what f* ??? I want to see memory like we get in line 54 but without KiB
         return self.word
 
     def get_heuristics(self):
