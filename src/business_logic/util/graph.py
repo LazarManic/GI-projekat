@@ -49,7 +49,6 @@ class Graph:
             df_h = df[df['Heuristic'] == h]
             ax[0].bar(df_h['Word lenght'] + unit * width + move_unit , df_h['Memory'], label=h, width = width)  # Plot some data on the axes.
             ax[1].bar(df_h['Word lenght'] + unit * width + move_unit , df_h['Time'], label=h, width = width)  # Plot some data on the axes.
-
             unit += 1
 
         ax[0].legend();  # Add a legend.
@@ -57,4 +56,8 @@ class Graph:
 
         plt.savefig('Test_figure.png', dpi=300)
         plt.show()
+
+        # Export table
+        df = df.sort_values(by=['Word lenght','Time','Memory'], ascending=[False,True,True])
+        df.to_html('Test_table.html')
         
