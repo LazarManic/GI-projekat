@@ -68,5 +68,3 @@ class Search:
             h += " + " + type(self.__heuristics[1]).__name__
         return "{}".format(h)
 
-
-
