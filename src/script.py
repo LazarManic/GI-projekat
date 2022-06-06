@@ -6,11 +6,12 @@ msg = "Usage: script.py --input/-i <InoutFilePath> --heuristic/-he <h>"
 parser = argparse.ArgumentParser(description=msg)
 parser.add_argument("-i", "--input", help="Input file is missing", required=True, type=str)
 parser.add_argument("-s", "--search", help="Search text is missing", required=True, type=str)
-parser.add_argument("-he", "--heuristic", help="Enter desired heuristics. Example: 1", required=True, type=int)
+parser.add_argument("-he", "--heuristic", help="Enter desired heuristics. Example: 1", type=int, default=4)
 parser.add_argument("-a", "--alphabet", required=False, help="Enter posible alphabet. Example 'ABC'", type=str, default='ACGT')
 args = parser.parse_args()
 
 # Ceate list of heuristics
+# TODO add new heuristics
 if args.heuristic == 1:
     heuristics = [hh.Goodsuffix(args.search)]
 elif args.heuristic == 2:
@@ -25,9 +26,7 @@ else:
 import search as s
 
 ## Create strings for matching
-# TODO try FASTA file
-t = 'CTTATCGATGAAACAACTGAATCGTACTCAGGTCA'
-program = s.Search(text_or_file_path=t, word=args.search, heuristics=heuristics, is_file_path=False)
+program = s.Search(text_or_file_path=args.input, word=args.search, heuristics=heuristics, is_file_path=True)
 program.do_magic()
 
 import business_logic.util.graph as g
