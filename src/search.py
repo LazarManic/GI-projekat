@@ -2,44 +2,52 @@ import tracemalloc
 import time
 
 import business_logic.string_search_alg as ss
+import business_logic.heuristics as hh
 
-class Search:
+class Search():
     """Class for searching word in tekst provided in FASTA file format"""
      
-    def __init__(self, file_path, word, heuristics):
+    def __init__(self, file_path:str, word:str, heuristics:hh.IHeuristicstrategy):
         """Constructor with FASTA file path"""
         self.__file_path = file_path
-        self.__word = word
+        self.word = word
         self.__heuristics = heuristics
         self.__time = 0
         self.__memory = (0, 0)
-
-    def __init__(self, text, word, heuristics):
-        """Constructor with text for searching. Used for testings."""
-        self.__text = text
-        self.__word = word
-        self.__heuristics = heuristics
+        self.__search = ss.Stringsearch(self.__heuristics)
+        _, self.text = Search.read_fasta(self.__file_path)
+ 
 
     def open_file(self):
         """Open FASTA file"""
         # TODO
         pass
-
-    def read_file(self):
+    
+    @staticmethod
+    def read_fasta(file_path:str):
         """Read bytes? from FASTA file"""
-        # TODO
-        pass
+        defline = ''
+        sequence = ''
+        file = open(file_path)
+        for line in file:
+            if line[0] == '>':
+                defline = line.strip()
+                defline = defline.replace('>', '')
+            else:
+                sequence += line.strip()
+        return (defline, sequence)
+
+
 
     def do_magic(self):
         """Apply a heuristic rule and return the number of alignments that can be skipped"""
-        search = ss.Stringsearch(self.__heuristics)
         # start of monitoring memory allocation and time of execusion
         tracemalloc.start()
         start_time = time.time()
 
         # TODO: Replace text with file content?
         # run the algorithm
-        sol = search.find(self.__text, self.__word)
+        sol = self.__search.find(self.text, self.word)
 
         # end of monitoring memory allocation and time of execusion
         end_time = time.time()
@@ -60,7 +68,8 @@ class Search:
         return self.__memory
 
     def get_word(self):
-        return self.__word
+        # TODO what f* ??? I want to see memory like we get in line 54 but without KiB
+        return self.word
 
     def get_heuristics(self):
         h = type(self.__heuristics[0]).__name__
