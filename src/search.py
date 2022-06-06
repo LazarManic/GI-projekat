@@ -54,10 +54,10 @@ class Search:
         print("Execution time: {time:.10f}, execution memory peak: {mem} KiB".format(time = self.__time, mem = self.__memory))
 
     def get_execution_time(self):
-        return "{time:.10f}".format(time=self.__time)
+        return self.__time
 
     def get_execution_memory(self):
-        return "{}".format(self.__memory)
+        return self.__memory
 
     def get_word(self):
         return self.__word
