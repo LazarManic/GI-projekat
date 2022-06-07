@@ -39,7 +39,7 @@ class Search():
     
         return self.__search.find(self.text, self.word)
 
-    def search_fasta_as_datastream(self, chunk_size:int = 10000):
+    def search_fasta_as_datastream(self, chunk_size:int = 1000):
 
         file_obj = open(self.__file_path)
         overlap = len(self.word)
