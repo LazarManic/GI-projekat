@@ -5,18 +5,18 @@ import numpy as np
 class Graph:
     """Class to drive graph for visualisation"""
     @staticmethod
-    def Drive(programs):
+    def Drive(data_metrics):
         heuristics = []
         words_len = []
         times = []
         memories = []
 
         # create data frame
-        for program in programs:
-            heuristics.append(program.get_heuristics())
-            words_len.append(len(program.get_word()))
-            times.append(program.get_execution_time())
-            memories.append(program.get_execution_memory())
+        for data in data_metrics:
+            heuristics.append(data.heuristic_name)
+            words_len.append(data.word_length)
+            times.append(data.time)
+            memories.append(data.memory)
 
         data_dict = { 'Heuristic': heuristics, 'Word lenght': words_len, 'Time': times, 'Memory': memories }
         df = pd.DataFrame(data_dict)
