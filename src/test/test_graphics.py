@@ -9,7 +9,7 @@ import business_logic.performance as pf
 def get_data(searcher:s.Search, perf_calc:pf.Performance):
     # Time process 
     perf_calc.start_clock()
-    searcher.search_text()
+    sol = searcher.search_text()
     time, mem = perf_calc.stop_clock()
 
     data = pf.PerformanceData(
@@ -19,7 +19,7 @@ def get_data(searcher:s.Search, perf_calc:pf.Performance):
         memory = mem
     )
     
-    return data
+    return sol, data
 
 
 ## Create strings for matching
@@ -35,17 +35,17 @@ for word in words:
     # Fetch metrics for each combination of heuristics
     searcher = s.Search(text=t, word=word,  heuristics=[hh.Badcharacter(word, alphabet), hh.Goodsuffix(word)])
 
-    data = get_data(searcher, perf_calc)
+    sol, data = get_data(searcher, perf_calc)
     data_metrics.append(data)
 
     searcher = s.Search(text=t, word=word,  heuristics=[hh.Goodsuffix(word)])
 
-    data = get_data(searcher, perf_calc)
+    sol, data = get_data(searcher, perf_calc)
     data_metrics.append(data)
 
     searcher = s.Search(text=t, word=word, heuristics = [hh.Badcharacter(word, alphabet)])
 
-    data = get_data(searcher, perf_calc)
+    sol, data = get_data(searcher, perf_calc)
     data_metrics.append(data)
 
 
