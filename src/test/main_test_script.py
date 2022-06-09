@@ -16,19 +16,40 @@ programs = []
 print("Test set 1: Tekst: Coffea arabica, Chromosome 1c i paterni: ATGCATG, TCTCTCTA, TTCACTACTCTCA")
 
 words = ['ATGCATG', 'TCTCTCTA', 'TTCACTACTCTCA']
-# file = "../data/chr1.fna" # enter relative path to the data
-file = 'C:/Users/tsretkovic/Desktop/skola/GI/PROJEKAT/GI-projekat/src/data/chr1.fna'
+file = "../../data/chr1.fna" # enter relative path to the data
+#file = 'C:/Users/tsretkovic/Desktop/skola/GI/PROJEKAT/GI-projekat/src/data/chr1.fna'
 
 from src import search as s
 from src.business_logic import heuristics as hh
+from src.business_logic import performance as pf
 
 # Alhabet in FASTA file
 alphabet = 'ACGTN'
 
+# Calculates performance
+perf_calc = pf.Performance()
+data_metrics = []
+
 for word in words:
-    # TODO add all heuristics
-    programs.append(s.Search(word=word, heuristics=[hh.Badcharacter(word, alphabet), hh.Goodsuffix(word)], text_or_file_path=file, is_file_path=True))
-    programs[len(programs) - 1].do_magic()
+
+    # Initialize searcher for each word
+    searcher = s.Search(file_path=file, word=word, heuristics=[hh.Badcharacter(word, alphabet), hh.Goodsuffix(word)])
+    
+    # Start performance check 
+    perf_calc.start_clock()
+    sol1 = searcher.search_fasta_as_datastream()
+    #sol2 = searcher.search_fasta()
+    time, mem = perf_calc.stop_clock()
+
+    # Create dataclass that stores performances for heuristic combinations
+    data = pf.PerformanceData(
+        heuristic_name=searcher.get_heuristics(),
+        word_length = len(word),
+        time = time,
+        memory = mem
+    )
+
+    data_metrics.append(data)
 
 # ###################### Test set 2 #########################
 
@@ -61,4 +82,4 @@ for word in words:
 
 
 import business_logic.util.graph as g
-g.Graph().Drive(programs)
+g.Graph().Drive(data_metrics)

@@ -4,14 +4,14 @@
 class IHeuristicstrategy:
     """Class serves as a interface for heuristic rules, 
     that evaluate which alignments to skip when comparing two strings"""
-    def __init__(self):
-        pass
+    def __init__(self, word_len:int):
+       self.index = range(word_len-1, -1, -1) 
 
     def match_skip(self)->int:
         """Return amount to shift after a match occured"""
         pass
 
-    def apply_rule(self, match_string:str, substring:str, i:int, j:int)->int:
+    def apply_rule(self, match_string:str, word:str, i:int, j:int)->int:
         """Apply a heuristic rule and return the number of alignments that can be skipped"""
         pass
 
@@ -21,14 +21,14 @@ import business_logic.util.bad_char_util as bc
 
 class Badcharacter(IHeuristicstrategy):
     """Class implements the 'bad character' heuristic rule """
-    def __init__(self, substring:str, alphabet: str):
-        IHeuristicstrategy.__init__(self)
+    def __init__(self, word:str, alphabet: str):
+        IHeuristicstrategy.__init__(self, len(word))
 
         
         #Construct a map that maps each valid character(that can occur in matching string) to a unique integer 
         self.amap = {char:i for i,char in enumerate(alphabet)}
         
-        self.bad_char = bc.dense_bad_char_tab(substring, self.amap)
+        self.bad_char = bc.dense_bad_char_tab(word, self.amap)
 
     def match_skip(self)->int:
         return 1
@@ -41,7 +41,7 @@ class Badcharacter(IHeuristicstrategy):
         return i - (self.bad_char[i][ci]-1)
     
     
-    def apply_rule(self, match_string:str, substring:str, i:int, j:int)->int:
+    def apply_rule(self, match_string:str, word:str, i:int, j:int)->int:
         
         # Get alignment shift from the bad character matrix, based on the character in position
         return self.bad_character_rule(j,match_string[i+j])
@@ -54,10 +54,10 @@ import business_logic.util.good_suffix_util as gs
     
 class Goodsuffix(IHeuristicstrategy):
     """ Class implements the good suffix strategy"""
-    def __init__(self, substring:str): 
-        
+    def __init__(self, word:str): 
+        IHeuristicstrategy.__init__(self, len(word))
         ## Create good suffix rule table
-        _, self.big_l, self.small_l_prime = gs.good_suffix_table(substring)
+        _, self.big_l, self.small_l_prime = gs.good_suffix_table(word)
 
     def match_skip(self)->int:
         return len(self.small_l_prime) - self.small_l_prime[1]
@@ -75,5 +75,5 @@ class Goodsuffix(IHeuristicstrategy):
         return length - self.small_l_prime[i]
     
 
-    def apply_rule(self, match_string:str, substring:str, i:int, j:int)->int:
+    def apply_rule(self, match_string:str, word:str, i:int, j:int)->int:
         return self.good_suffix_rule(j)
