@@ -5,8 +5,7 @@ class IHeuristicstrategy:
     """Class serves as a interface for heuristic rules, 
     that evaluate which alignments to skip when comparing two strings"""
     def __init__(self, word_len:int):
-       self.index = range(word_len-1, -1, -1) 
-
+        pass
     def match_skip(self)->int:
         """Return amount to shift after a match occured"""
         pass
@@ -77,3 +76,14 @@ class Goodsuffix(IHeuristicstrategy):
 
     def apply_rule(self, match_string:str, word:str, i:int, j:int)->int:
         return self.good_suffix_rule(j)
+
+
+
+
+
+# SDAABXXXABXXXABSSADA
+# ..XABXXXABXXXAB
+
+
+[2, 1, 0, 4, 5, 3]
+[5, 4, 3, 2, 1, 0]
