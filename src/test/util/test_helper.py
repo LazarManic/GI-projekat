@@ -21,8 +21,10 @@ def get_pergormance(file_path:str, word:str, heuristics, perf_calc):
     
     # Start performance check 
     perf_calc.start_clock()
-    sol1 = searcher.search_fasta_as_datastream()
+    sol = searcher.search_fasta_as_datastream()
     time, mem = perf_calc.stop_clock()
+    print("Searching word: {0}, number of occurences: {1}, indexes:\n{1}".format(word, len(sol), sol))
+
 
     # Create dataclass that stores performances for heuristic combinations
     data = pf.PerformanceData(
