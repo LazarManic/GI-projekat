@@ -80,10 +80,54 @@ class Goodsuffix(IHeuristicstrategy):
 
 
 
+class RLongestGap(IHeuristicstrategy):
 
-# SDAABXXXABXXXABSSADA
-# ..XABXXXABXXXAB
+    def __init__(self, word:str):
+        IHeuristicstrategy.__init__(self, len(word))
+        self.jump_vec = RLongestGap.get_jump_vector(word)
+    
+    def match_skip(self)->int:
+        return self.jump_vec[0]
+
+    @staticmethod
+    def get_jump_vector(word:str):
+
+        sol = [1]*(len(word)+1)
+
+        char_dict = {}
+        for i, c in enumerate(word):
+            if c in char_dict:
+                char_dict[c].append(i)
+            else:
+                char_dict[c] = [i]            
+        
+        for arr in char_dict.values():
+            arr.append('#')
 
 
-[2, 1, 0, 4, 5, 3]
-[5, 4, 3, 2, 1, 0]
+        max_jump = 1
+        for i, c in reversed(list(enumerate(word))):
+
+            assert c in char_dict
+            arr = char_dict[c]
+
+            if len(char_dict[c]):
+                next_i = char_dict[c].pop()
+                if next_i == '#':
+                    jump =  len(word) - i
+                else:
+                    jump = next_i - i 
+
+            else:
+                jump = len(word) - i 
+            
+            if max_jump < jump:
+                max_jump = jump
+
+            sol[i] = max_jump 
+
+        return sol
+    
+
+    def apply_rule(self, match_string:str, word:str, i:int, j:int)->int:
+        return  self.jump_vec[j+1]
