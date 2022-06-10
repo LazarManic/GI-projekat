@@ -164,7 +164,7 @@ class LolngestGap(IHeuristicstrategy):
             if len(arr) > 1:
                 next_i = char_dict[c].pop() - char_dict[c][len(arr) - 1]
             else:
-                next_i = char_dict[c].pop()
+                next_i = char_dict[c].pop() + 1
 
             if sol[i+1] > next_i:
                 sol[i] = sol[i+1]
@@ -172,6 +172,7 @@ class LolngestGap(IHeuristicstrategy):
                 sol[i] = next_i
 
         sol[0] = sol[1]
+        print(sol)
         return sol
 
     def apply_rule(self, match_string:str, word:str, i:int, j:int)->int:

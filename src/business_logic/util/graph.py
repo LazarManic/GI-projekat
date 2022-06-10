@@ -15,7 +15,7 @@ class Graph:
         for data in data_metrics:
             heuristics.append(data.heuristic_name)
             words_len.append(data.word_length)
-            times.append(data.time)
+            times.append(data.time*1000)
             memories.append(data.memory)
 
         data_dict = { 'Heuristic': heuristics, 'Word lenght': words_len, 'Time': times, 'Memory': memories }
@@ -34,7 +34,7 @@ class Graph:
         ax[1].grid()
         ax[1].set_xticks(np.arange(min(df['Word lenght']), max(df['Word lenght'])+1, 1.0))
         ax[1].set_xlabel('word lenght')  # Add an x-label to the axes.
-        ax[1].set_ylabel('Time [s]')  # Add a y-label to the axes.
+        ax[1].set_ylabel('Time [ms]')  # Add a y-label to the axes.
         ax[1].set_title("Time")  # Add a title to the axes.
 
         

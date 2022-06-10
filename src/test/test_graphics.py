@@ -51,7 +51,7 @@ for word in words:
     data_metrics.append(data)
     print(sol)
 
-    searcher = s.Search(text=t, word=word, heuristics = [hh.RLongestGap(word), hh.LolngestGap(word)])
+    searcher = s.Search(text=t, word=word, heuristics = [hh.LolngestGap(word),hh.RLongestGap(word)])
 
     sol, data = get_data(searcher, perf_calc)
     data_metrics.append(data)

@@ -13,5 +13,4 @@ sys.path.append(parent_subdirectory)
 
 from src.business_logic import heuristics as hh
 
-h = hh.LolngestGap("BAAA")
-
+h = hh.LolngestGap("bxxxxxbxb")
