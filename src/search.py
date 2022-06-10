@@ -45,6 +45,9 @@ class Search():
         overlap = len(self.word)
         prepend = ""
 
+        # Read defline
+        file_obj.readline()
+
         offset = 0
         sol = []
         while True:
