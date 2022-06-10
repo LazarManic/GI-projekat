@@ -37,22 +37,26 @@ for word in words:
 
     sol, data = get_data(searcher, perf_calc)
     data_metrics.append(data)
-
-    searcher = s.Search(text=t, word=word,  heuristics=[hh.Goodsuffix(word)])
-
-    sol, data = get_data(searcher, perf_calc)
-    data_metrics.append(data)
-
-    searcher = s.Search(text=t, word=word, heuristics = [hh.Badcharacter(word, alphabet)])
-
-    sol, data = get_data(searcher, perf_calc)
-    data_metrics.append(data)
-
+    print(sol)
 
     searcher = s.Search(text=t, word=word, heuristics = [hh.RLongestGap(word)])
 
     sol, data = get_data(searcher, perf_calc)
     data_metrics.append(data)
+    print(sol)
+
+    searcher = s.Search(text=t, word=word, heuristics = [hh.LolngestGap(word)])
+
+    sol, data = get_data(searcher, perf_calc)
+    data_metrics.append(data)
+    print(sol)
+
+    searcher = s.Search(text=t, word=word, heuristics = [hh.RLongestGap(word), hh.LolngestGap(word)])
+
+    sol, data = get_data(searcher, perf_calc)
+    data_metrics.append(data)
+    print(sol)
+
 
 
 

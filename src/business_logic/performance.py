@@ -44,5 +44,3 @@ class Performance():
 
         print("Execution time: {}, execution memory peak: {} KiB".format(self.time,self.memory))
         return self.time, self.memory
-        
-

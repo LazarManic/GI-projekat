@@ -131,3 +131,48 @@ class RLongestGap(IHeuristicstrategy):
 
     def apply_rule(self, match_string:str, word:str, i:int, j:int)->int:
         return  self.jump_vec[j+1]
+
+
+
+
+class LolngestGap(IHeuristicstrategy):
+
+    def __init__(self, word:str):
+        IHeuristicstrategy.__init__(self, len(word))
+        self.jump_vec = LolngestGap.get_jump_vector(word)
+
+    def match_skip(self)->int:
+        return self.jump_vec[0]
+
+    @staticmethod
+    def get_jump_vector(word:str):
+
+        sol = [1]*(len(word)+1)
+
+        char_dict = {}
+        for i, c in enumerate(word):
+            if c in char_dict:
+                char_dict[c].append(i)
+            else:
+                char_dict[c] = [i]
+
+        max_jump = 1
+        for i, c in reversed(list(enumerate(word))):
+            assert c in char_dict
+            arr = char_dict[c]
+
+            if len(arr) > 1:
+                next_i = char_dict[c].pop() - char_dict[c][len(arr) - 1]
+            else:
+                next_i = char_dict[c].pop()
+
+            if sol[i+1] > next_i:
+                sol[i] = sol[i+1]
+            else:
+                sol[i] = next_i
+
+        sol[0] = sol[1]
+        return sol
+
+    def apply_rule(self, match_string:str, word:str, i:int, j:int)->int:
+        return  self.jump_vec[j+1]
