@@ -172,7 +172,6 @@ class LolngestGap(IHeuristicstrategy):
                 sol[i] = next_i
 
         sol[0] = sol[1]
-        print(sol)
         return sol
 
     def apply_rule(self, match_string:str, word:str, i:int, j:int)->int:

@@ -30,13 +30,14 @@ data_metrics = []
 print("Test set 1: Tekst: Coffea arabica, Chromosome 1c i paterni: ATGCATG, TCTCTCTA, TTCACTACTCTCA")
 
 
-words = ['ATGCATG', 'TCTCTCTA', 'TTCACTACTCTCA']
+words = ['AAAAAAAAAAAAAAAAAAAT', 'ATGCATG', 'TCTCTCTA', 'TTCACTACTCTCA']
 # file = "../../data/chr1.fna" # enter relative path to the data
 file = 'C:/Users/tsretkovic/Desktop/skola/GI/PROJEKAT/GI-projekat/src/data/chr1.fna'
 # Alhabet in FASTA file
 alphabet = 'ACGTN'
 
 helper.spin_heuristics(file, words, alphabet, perf_calc, data_metrics)
+
 
 
 # ###################### Test set 2 #########################
