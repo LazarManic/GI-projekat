@@ -19,50 +19,44 @@ from src.test.util import test_helper as helper
 perf_calc = pf.Performance()
 data_metrics = []
 
+# Alhabet in FASTA file
+alphabet = 'ACGTNU'
 
 
 ###################### Test set 1 #########################
 print("Test set 1: Tekst: Coffea arabica, Chromosome 1c i paterni: ATGCATG, TCTCTCTA, TTCACTACTCTCA")
 
 
-words = ['AAAAAAAAAAAAAAAAAAAT', 'ATGCATG', 'TCTCTCTA', 'TTCACTACTCTCA']
+words = ['ATGCATG', 'TCTCTCTA', 'TTCACTACTCTCA']
 # file = "../../data/chr1.fna" # enter relative path to the data
 file = 'C:/Users/tsretkovic/Desktop/skola/GI/PROJEKAT/GI-projekat/src/data/chr1.fna'
-# Alhabet in FASTA file
-alphabet = 'ACGTN'
 
 helper.spin_heuristics(file, words, alphabet, perf_calc, data_metrics)
 
 
 
-# ###################### Test set 2 #########################
+###################### Test set 2 #########################
 
-# print("Test set 2: Tekst: Mus pahari chromosome X, i paterni: ATGATG, CTCTCTA, TCACTACTCTCA")
+print("Test set 2: Genom po slobodnom izboru: PhiX_genome.fasta, i paterni: ATGATG, CTCTCTA, TCACTACTCTCA")
 
-# # TODO: add correct filepath
-# words = ['ATGATG', 'CTCTCTA', 'TCACTACTCTCA']
-# #file = "C:\Users\tsretkovic\Desktop\skola\GI\PROJEKAT\chr1.fna.gz"
+words = ['ATGATG', 'CTCTCTA', 'TCACTACTCTCA']
+file = 'C:/Users/tsretkovic/Desktop/skola/GI/PROJEKAT/GI-projekat/src/data/PhiX_genome.fasta'
+# file = "../../data/PhiX_genome.fasta" # enter relative path to the data
 
-# # Alhabet in FASTA file
-# alphabet = 'ACGTN'
-
-# helper.spin_heuristics(file, words, alphabet, perf_calc, data_metrics)
+helper.spin_heuristics(file, words, alphabet, perf_calc, data_metrics)
 
 
 
 
 # ###################### Test set 3 #########################
 
-# print("Test set 3: Genom po slobodnom izboru iz NIH baze i proizvoljna 3 paterna različite dužine.")
+print("Test set 3: Genom po slobodnom izboru: example_human_reference.fasta, paterni: 'AATCTTT', 'TCAG', 'CTTTTGTTGCCTGTGCCTTTGATGT'")
 
-# # TODO: change words and add correct filepath
-# words = ['AAAAAAG', 'TGGGGGGGG', 'CTAAAAAAAAAAAAAAAAA', 'AAAAAAAAAAAAAAAAAAC]
-# #file = "C:\Users\tsretkovic\Desktop\skola\GI\PROJEKAT\chr1.fna.gz"
+words = ['AATCTTT', 'TCAG', 'CTTTTGTTGCCTGTGCCTTTGATGT']
+file = 'C:/Users/tsretkovic/Desktop/skola/GI/PROJEKAT/GI-projekat/src/data/example_human_reference.fasta'
+# file = "../../data/example_human_reference.fasta" # enter relative path to the data
 
-# # Alhabet in FASTA file
-# alphabet = 'ACGTN'
-
-# helper.spin_heuristics(file, words, alphabet, perf_calc, data_metrics)
+helper.spin_heuristics(file, words, alphabet, perf_calc, data_metrics)
 
 
 import business_logic.util.graph as g
