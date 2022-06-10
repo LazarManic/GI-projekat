@@ -16,7 +16,7 @@ from src.business_logic import performance as pf
 
 
 def get_pergormance(file_path:str, word:str, heuristics, perf_calc):
-        # Initialize searcher for each word
+    # Initialize searcher for each word
     searcher = s.Search(file_path=file_path, word=word, heuristics=heuristics)
     
     # Start performance check 
@@ -30,21 +30,7 @@ def get_pergormance(file_path:str, word:str, heuristics, perf_calc):
         word_length = len(word),
         time = time,
         memory = mem
-    )    # Initialize searcher for each word
-    searcher = s.search_fasta_as_datastream(file_path=file_path, word=word, heuristics=heuristics)
-    
-    # Start performance check 
-    perf_calc.start_clock()
-    sol1 = searcher.search_fasta_as_datastream()
-    time, mem = perf_calc.stop_clock()
-
-    # Create dataclass that stores performances for heuristic combinations
-    data = pf.PerformanceData(
-        heuristic_name=searcher.get_heuristics(),
-        word_length = len(word),
-        time = time,
-        memory = mem
-    )
+    ) 
 
     return data
 
