@@ -1,11 +1,9 @@
 import sys
 import os
-from pathlib import Path
 
 # issues in importing parent directories as modules 
 parent_subdirectory = os.path.abspath(os.path.join(__file__, os.pardir, os.pardir)) 
 parent_directory = os.path.abspath(os.path.join(__file__, os.pardir, os.pardir, os.pardir))
-
 
 # append path directories as modules
 sys.path.append(parent_directory)
@@ -16,13 +14,10 @@ from src.business_logic import performance as pf
 from src.test.util import test_helper as helper
 
 
-
 # GLOBAL
 # Calculates performance
 perf_calc = pf.Performance()
 data_metrics = []
-
-
 
 
 

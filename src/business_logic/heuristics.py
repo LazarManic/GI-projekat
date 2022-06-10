@@ -1,5 +1,3 @@
-
-
 ## Implement a strategy design pattern for different heuristics
 class IHeuristicstrategy:
     """Class serves as a interface for heuristic rules, 
@@ -10,7 +8,7 @@ class IHeuristicstrategy:
         """Return amount to shift after a match occured"""
         pass
 
-    def apply_rule(self, match_string:str, word:str, i:int, j:int)->int:
+    def apply_rule(self, match_string:str, i:int, j:int)->int:
         """Apply a heuristic rule and return the number of alignments that can be skipped"""
         pass
 
@@ -29,6 +27,12 @@ class Badcharacter(IHeuristicstrategy):
         
         self.bad_char = bc.dense_bad_char_tab(word, self.amap)
 
+    def get_amap(self):
+        return self.amap
+
+    def get_bad_char(self):
+        return self.bad_char
+
     def match_skip(self)->int:
         return 1
 
@@ -40,7 +44,7 @@ class Badcharacter(IHeuristicstrategy):
         return i - (self.bad_char[i][ci]-1)
     
     
-    def apply_rule(self, match_string:str, word:str, i:int, j:int)->int:
+    def apply_rule(self, match_string:str, i:int, j:int)->int:
         
         # Get alignment shift from the bad character matrix, based on the character in position
         return self.bad_character_rule(j,match_string[i+j])
@@ -74,7 +78,7 @@ class Goodsuffix(IHeuristicstrategy):
         return length - self.small_l_prime[i]
     
 
-    def apply_rule(self, match_string:str, word:str, i:int, j:int)->int:
+    def apply_rule(self, match_string:str, i:int, j:int)->int:
         return self.good_suffix_rule(j)
 
 
@@ -129,7 +133,7 @@ class RLongestGap(IHeuristicstrategy):
         return sol
     
 
-    def apply_rule(self, match_string:str, word:str, i:int, j:int)->int:
+    def apply_rule(self, match_string:str, i:int, j:int)->int:
         return  self.jump_vec[j+1]
 
 
@@ -156,7 +160,6 @@ class LolngestGap(IHeuristicstrategy):
             else:
                 char_dict[c] = [i]
 
-        max_jump = 1
         for i, c in reversed(list(enumerate(word))):
             assert c in char_dict
             arr = char_dict[c]
@@ -174,5 +177,5 @@ class LolngestGap(IHeuristicstrategy):
         sol[0] = sol[1]
         return sol
 
-    def apply_rule(self, match_string:str, word:str, i:int, j:int)->int:
+    def apply_rule(self, match_string:str, i:int, j:int)->int:
         return  self.jump_vec[j+1]

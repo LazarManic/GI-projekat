@@ -58,7 +58,7 @@ class Stringsearch():
                     
                     ## Calculate shift by every heuristic rule
                     for k, heur in enumerate(self.__heuristics):
-                        heur_shifts[k] = heur.apply_rule(t,p,i,j)
+                        heur_shifts[k] = heur.apply_rule(t,i,j)
                     
                     ## Get the maximum shift from heuristics
                     heur_maxshift = max(heur_shifts) 
