@@ -49,5 +49,12 @@ for word in words:
     data_metrics.append(data)
 
 
+    searcher = s.Search(text=t, word=word, heuristics = [hh.RLongestGap(word)])
+
+    sol, data = get_data(searcher, perf_calc)
+    data_metrics.append(data)
+
+
+
 import business_logic.util.graph as g
 g.Graph().Drive(data_metrics)
