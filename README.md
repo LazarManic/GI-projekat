@@ -1,6 +1,8 @@
 # GI-projekat
 Projektni zadatak za predmet Genomska Informatika, implementacija 'string-searching' algoritma
+Link ka prezentaciji:
 
+https://youtu.be/bh-5pdnlNeE
 ## Instrukcije za pokretanje
 
 1. Iz komandne linije pokrenuti sledecu komandu:
