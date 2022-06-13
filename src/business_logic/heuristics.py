@@ -139,11 +139,11 @@ class RLongestGap(IHeuristicstrategy):
 
 
 
-class LolngestGap(IHeuristicstrategy):
+class LLongestGap(IHeuristicstrategy):
 
     def __init__(self, word:str):
         IHeuristicstrategy.__init__(self, len(word))
-        self.jump_vec = LolngestGap.get_jump_vector(word)
+        self.jump_vec = LLongestGap.get_jump_vector(word)
 
     def match_skip(self)->int:
         return self.jump_vec[0]

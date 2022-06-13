@@ -15,24 +15,24 @@ alphabet = 'ACGT'
 from src.business_logic import heuristics as hh
 
 #########################################################################################################
-#                                         Test LolngestJump                                             #
+#                                         Test LLongestJump                                             #
 #########################################################################################################
 
 
 # Test vector
 
 word = 'ACGACGACGACG'
-vector = hh.LolngestGap.get_jump_vector(word)
+vector = hh.LLongestGap.get_jump_vector(word)
 assert len(vector) == len(word) + 1
 assert vector == [3,3,3,3,3,3,3,3,3,3,3,3,1]
 
 word = 'AAAAAAAAAG'
-vector = hh.LolngestGap.get_jump_vector(word)
+vector = hh.LLongestGap.get_jump_vector(word)
 assert len(vector) == len(word) + 1
 assert vector == [10,10,10,10,10,10,10,10,10,10,1]
 
 word = 'GAAAAAAAAA'
-vector = hh.LolngestGap.get_jump_vector(word)
+vector = hh.LLongestGap.get_jump_vector(word)
 assert len(vector) == len(word) + 1
 assert vector == [2,2,1,1,1,1,1,1,1,1,1]
 
@@ -40,19 +40,19 @@ assert vector == [2,2,1,1,1,1,1,1,1,1,1]
 # Test apply rule (does not depend on search text)
 
 word = 'ACGACGACGACG'
-h = hh.LolngestGap(word)
+h = hh.LLongestGap(word)
 assert h.apply_rule('',1,3) == 3
 assert h.apply_rule('',1,11) == 1
 assert h.apply_rule('',1,0) == 3
 
 word = 'AAAAAAAAAG'
-h = hh.LolngestGap(word)
+h = hh.LLongestGap(word)
 assert h.apply_rule('',1,3) == 10
 assert h.apply_rule('',1,9) == 1
 assert h.apply_rule('',1,0) == 10
 
 word = 'GAAAAAAAAA'
-h = hh.LolngestGap(word)
+h = hh.LLongestGap(word)
 assert h.apply_rule('',1,3) == 1
 assert h.apply_rule('',1,9) == 1
 assert h.apply_rule('',1,0) == 2
@@ -61,15 +61,15 @@ assert h.apply_rule('',1,0) == 2
 # Test mach skipp
 
 word = 'ACGACGACGACG'
-h = hh.LolngestGap(word)
+h = hh.LLongestGap(word)
 assert h.match_skip() == 3
 
 word = 'AAAAAAAAAG'
-h = hh.LolngestGap(word)
+h = hh.LLongestGap(word)
 assert h.match_skip() == 10
 
 word = 'GAAAAAAAAA'
-h = hh.LolngestGap(word)
+h = hh.LLongestGap(word)
 assert h.match_skip() == 2
 
 

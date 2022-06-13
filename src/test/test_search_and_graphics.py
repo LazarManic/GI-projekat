@@ -46,13 +46,13 @@ for i, word in enumerate(words):
     data_metrics.append(data)
     print(sol2)
 
-    searcher = s.Search(text=t, word=word, heuristics = [hh.LolngestGap(word)])
+    searcher = s.Search(text=t, word=word, heuristics = [hh.LLongestGap(word)])
 
     sol3, data = get_data(searcher, perf_calc)
     data_metrics.append(data)
     print(sol3)
 
-    searcher = s.Search(text=t, word=word, heuristics = [hh.LolngestGap(word),hh.RLongestGap(word)])
+    searcher = s.Search(text=t, word=word, heuristics = [hh.LLongestGap(word),hh.RLongestGap(word)])
 
     sol4, data = get_data(searcher, perf_calc)
     data_metrics.append(data)

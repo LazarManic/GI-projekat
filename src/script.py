@@ -1,5 +1,6 @@
 import argparse
 import business_logic.heuristics as hh
+from business_logic import performance as pf
 
 # Define arguments for the script
 msg = "Usage: script.py --input/-i <InoutFilePath> --heuristic/-he <h>"
@@ -25,11 +26,22 @@ else:
 
 import search as s
 
+perf_calc = pf.Performance()
 ## Create strings for matching
-program = s.Search(text_or_file_path=args.input, word=args.search, heuristics=heuristics, is_file_path=True)
-program.do_magic()
+program = s.Search(file_path=args.input, word=args.search, heuristics=heuristics)
+
+perf_calc.start_clock()
+sol = program.search_fasta_as_datastream()
+time, mem = perf_calc.stop_clock()
+
+data = pf.PerformanceData(
+    heuristic_name = program.get_heuristics(),
+    word_length = len(program.word),
+    time = time,
+    memory = mem
+)
 
 import business_logic.util.graph as g
 
-g.Graph().Drive([program])
+g.Graph().Drive([data])
 

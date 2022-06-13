@@ -24,4 +24,4 @@ python .\src\script.py -i "C:/Users/tsretkovic/Desktop/skola/GI/PROJEKAT/GI-proj
 
     python .\src\test\main_test_script.py
 
-Paznja: Morate izmeniti linije broj 20,39,55 tako da putanja do samog fasta test fajla bude odfovarajuca
+Paznja: Morate izmeniti linije broj 20,39,55 tako da putanja do samog fasta test fajla bude odgovarajuca

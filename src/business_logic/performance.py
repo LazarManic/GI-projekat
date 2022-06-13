@@ -40,7 +40,7 @@ class Performance():
         self.time = self.end_time - self.start_time
         
         # memory at its peak - memory at start point
-        self.memory = memory[1] #- memory[0]
+        self.memory = memory[1] - memory[0]
 
         print("Execution time: {}, execution memory peak: {} KiB".format(self.time,self.memory))
         return self.time, self.memory

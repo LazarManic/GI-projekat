@@ -15,7 +15,7 @@ from src.business_logic import heuristics as hh
 from src.business_logic import performance as pf
 
 
-def get_pergormance(file_path:str, word:str, heuristics, perf_calc):
+def get_performance(file_path:str, word:str, heuristics, perf_calc):
     # Initialize searcher for each word
     searcher = s.Search(file_path=file_path, word=word, heuristics=heuristics)
     
@@ -23,7 +23,6 @@ def get_pergormance(file_path:str, word:str, heuristics, perf_calc):
     perf_calc.start_clock()
     sol = searcher.search_fasta_as_datastream()
     time, mem = perf_calc.stop_clock()
-    print("Searching word: {0}, number of occurences: {1}, indexes:\n{2}".format(word, len(sol), sol))
 
 
     # Create dataclass that stores performances for heuristic combinations
@@ -41,15 +40,16 @@ def spin_heuristics(file_path, words, alphabet, perf_calc, data_metrics):
     for word in words:
 
         h = [hh.Badcharacter(word, alphabet), hh.Goodsuffix(word)]
-        data_metrics.append(get_pergormance(file_path, word, h, perf_calc))
+        data_metrics.append(get_performance(file_path, word, h, perf_calc))
 
-        h = [hh.LolngestGap(word)]
-        data_metrics.append(get_pergormance(file_path, word, h, perf_calc))
+        h = [hh.LLongestGap(word)]
+        data_metrics.append(get_performance(file_path, word, h, perf_calc))
 
         h = [hh.RLongestGap(word)]
-        data_metrics.append(get_pergormance(file_path, word, h, perf_calc))
+        data_metrics.append(get_performance(file_path, word, h, perf_calc))
 
-        h = [hh.LolngestGap(word), hh.RLongestGap(word)]
-        data_metrics.append(get_pergormance(file_path, word, h, perf_calc))
+        h = [hh.LLongestGap(word), hh.RLongestGap(word)]
+        data_metrics.append(get_performance(file_path, word, h, perf_calc))
+
 
 
