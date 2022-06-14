@@ -16,7 +16,7 @@ You will need python 3 installed and set up on your computer.
 
 From command line use this:
 
-1.a -i/--input      => absolute path to fasta file </br>
+1.a -i/--input      => path to fasta file </br>
 1.b -s/--search     => word to search for </br>
 1.c -he/--heuristic => Number for heuristic to use </br>
 ------------> 1) RLongestGap </br>
@@ -26,13 +26,13 @@ From command line use this:
 1.d -a/--alphabet    => Alphabet </br>
 
     ```
-    python .\src\script.py -i {fasta file path} -s {search string} -he 1 -a {alfabet}
+    python .\src\main.py -i {fasta file path} -s {search string} -he 1 -a {alfabet}
     ```
 
 For example:
 
 ```
-python .\src\script.py -i "C:/Users/tsretkovic/Desktop/skola/GI/PROJEKAT/GI-projekat/src/data/chr1.fna" -s 'ATATTTTTTTTTTTTT' -he 1 -a 'ACTG'
+python .\src\main.py -i "./src/data/example_human_reference.fasta" -s 'ATATTTTTTTTTTTTT' -he 1 -a 'ACTG'
 ```
 
 2. In the project, there is main test script that will go through 3 fasta files and search with 3 different words for each heuristic implementation.

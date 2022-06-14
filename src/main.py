@@ -12,13 +12,12 @@ parser.add_argument("-a", "--alphabet", required=False, help="Enter posible alph
 args = parser.parse_args()
 
 # Ceate list of heuristics
-# TODO add new heuristics
 if args.heuristic == 1:
-    heuristics = [hh.Goodsuffix(args.search)]
+    heuristics = [hh.RLongestGap(args.search)]
 elif args.heuristic == 2:
-    heuristics = [hh.Goodsuffix(args.search)]
+    heuristics = [hh.LLongestGap(args.search)]
 elif args.heuristic == 3:
-    heuristics = [hh.Goodsuffix(args.search)]
+    heuristics = [hh.LLongestGap(args.search), hh.RLongestGap(args.search)]
 else:
     # Default
     heuristics = [hh.Badcharacter(args.search, args.alphabet), hh.Goodsuffix(args.search)]
@@ -33,6 +32,8 @@ program = s.Search(file_path=args.input, word=args.search, heuristics=heuristics
 perf_calc.start_clock()
 sol = program.search_fasta_as_datastream()
 time, mem = perf_calc.stop_clock()
+
+print("Number of occurences: {0}, indexes:{1}".format(len(sol), sol))
 
 data = pf.PerformanceData(
     heuristic_name = program.get_heuristics(),
