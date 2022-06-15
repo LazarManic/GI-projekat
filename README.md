@@ -4,6 +4,9 @@
 
 School project task for subject of genomic informatics. Implementation of different heuristics for better string search algorithm. Using Boyer Moor approach with Bad character rule and Good suffix rule. Adding 2 new heuristics and comparing performance.
 
+Link to video presentation:
+https://www.youtube.com/watch?v=bh-5pdnlNeE
+
 ## Getting Started <a name = "getting_started"></a>
 
 These instructions will get you a copy of the project up and running on your local machine for testing purposes.
