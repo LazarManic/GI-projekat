@@ -82,100 +82,32 @@ class Goodsuffix(IHeuristicstrategy):
         return self.good_suffix_rule(j)
 
 
+import business_logic.util.longest_gap_util as gap_util
 
+class LongestGap(IHeuristicstrategy):
 
-class RLongestGap(IHeuristicstrategy):
-
-    def __init__(self, word:str):
+    def __init__(self, word:str, direction:str):
         IHeuristicstrategy.__init__(self, len(word))
-        self.jump_vec = RLongestGap.get_jump_vector(word)
+        if direction == 'L':
+            self.jump_vec = gap_util.get_jump_vector_left(word)
+        elif direction == 'R':
+            self.jump_vec = gap_util.get_jump_vector_right(word)
+        else:
+            raise Exception('Invalid direction')
     
     def match_skip(self)->int:
         return self.jump_vec[0]
-
-    @staticmethod
-    def get_jump_vector(word:str):
-
-        sol = [1]*(len(word)+1)
-
-        char_dict = {}
-        for i, c in enumerate(word):
-            if c in char_dict:
-                char_dict[c].append(i)
-            else:
-                char_dict[c] = [i]            
-        
-        for arr in char_dict.values():
-            arr.append('#')
-
-
-        max_jump = 1
-        for i, c in reversed(list(enumerate(word))):
-
-            assert c in char_dict
-            arr = char_dict[c]
-
-            if len(char_dict[c]):
-                next_i = char_dict[c].pop()
-                if next_i == '#':
-                    jump =  len(word) - i
-                else:
-                    jump = next_i - i 
-
-            else:
-                jump = len(word) - i 
-            
-            if max_jump < jump:
-                max_jump = jump
-
-            sol[i] = max_jump 
-
-        return sol
-    
 
     def apply_rule(self, match_string:str, i:int, j:int)->int:
         return  self.jump_vec[j+1]
 
 
-
-
-class LLongestGap(IHeuristicstrategy):
+class RLongestGap(LongestGap):
 
     def __init__(self, word:str):
-        IHeuristicstrategy.__init__(self, len(word))
-        self.jump_vec = LLongestGap.get_jump_vector(word)
+        LongestGap.__init__(self, word, 'R')
 
-    def match_skip(self)->int:
-        return self.jump_vec[0]
+class LLongestGap(LongestGap):
 
-    @staticmethod
-    def get_jump_vector(word:str):
-
-        sol = [1]*(len(word)+1)
-
-        char_dict = {}
-        for i, c in enumerate(word):
-            if c in char_dict:
-                char_dict[c].append(i)
-            else:
-                char_dict[c] = [i]
-
-        for i, c in reversed(list(enumerate(word))):
-            assert c in char_dict
-            arr = char_dict[c]
-
-            if len(arr) > 1:
-                next_i = char_dict[c].pop() - char_dict[c][len(arr) - 1]
-            else:
-                next_i = char_dict[c].pop() + 1
-
-            if sol[i+1] > next_i:
-                sol[i] = sol[i+1]
-            else:
-                sol[i] = next_i
-
-        sol[0] = sol[1]
-        return sol
-
-    def apply_rule(self, match_string:str, i:int, j:int)->int:
-        return  self.jump_vec[j+1]
+    def __init__(self, word:str):
+        LongestGap.__init__(self, word, 'L')

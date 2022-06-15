@@ -29,7 +29,6 @@ print("Test set 1: Tekst: Coffea arabica, Chromosome 1c i paterni: ATGCATG, TCTC
 
 words = ['ATGCATG', 'TCTCTCTA', 'TTCACTACTCTCA']
 file = "../../src/data/chr1.fna" # enter relative path to the data
-#file = 'C:/Users/tsretkovic/Desktop/skola/GI/PROJEKAT/GI-projekat/src/data/chr1.fna'
 
 helper.spin_heuristics(file, words, alphabet, perf_calc, data_metrics)
 
@@ -40,7 +39,6 @@ helper.spin_heuristics(file, words, alphabet, perf_calc, data_metrics)
 print("Test set 2: Genom po slobodnom izboru: Mus_pahari.PAHARI_EIJ_v1.1.dna.chromosome.1.fa, i paterni: ATGATG, CTCTCTA, TCACTACTCTCA")
 
 words = ['ATGATG', 'CTCTCTA', 'TCACTACTCTCA']
-#file = 'C:/Users/tsretkovic/Desktop/skola/GI/PROJEKAT/GI-projekat/src/data/PhiX_genome.fasta'
 file = "../../src/data/Mus_pahari.PAHARI_EIJ_v1.1.dna.chromosome.1.fa"
 
 
@@ -54,7 +52,6 @@ helper.spin_heuristics(file, words, alphabet, perf_calc, data_metrics)
 print("Test set 3: Genom po slobodnom izboru: Balaenoptera_musculus.mBalMus1.v2.dna.nonchromosomal.fa, paterni: 'AATCTTT', 'TCAG', 'CTTTTGTTGCCTGTGCCTTTGATGT'")
 
 words = ['AATCTTT', 'TCAG', 'CTTTTGTTGCCTGTGCCTTTGATGT']
-#file = 'C:/Users/tsretkovic/Desktop/skola/GI/PROJEKAT/GI-projekat/src/data/example_human_reference.fasta'
 file = "../../src/data/Balaenoptera_musculus.mBalMus1.v2.dna.nonchromosomal.fa" # enter relative path to the data
 
 helper.spin_heuristics(file, words, alphabet, perf_calc, data_metrics)

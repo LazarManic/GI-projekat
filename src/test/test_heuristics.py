@@ -12,6 +12,7 @@ sys.path.append(parent_subdirectory)
 
 alphabet = 'ACGT'
 
+from src.business_logic.util import longest_gap_util as gap_util
 from src.business_logic import heuristics as hh
 
 #########################################################################################################
@@ -22,17 +23,17 @@ from src.business_logic import heuristics as hh
 # Test vector
 
 word = 'ACGACGACGACG'
-vector = hh.LLongestGap.get_jump_vector(word)
+vector = gap_util.get_jump_vector_left(word)
 assert len(vector) == len(word) + 1
 assert vector == [3,3,3,3,3,3,3,3,3,3,3,3,1]
 
 word = 'AAAAAAAAAG'
-vector = hh.LLongestGap.get_jump_vector(word)
+vector = gap_util.get_jump_vector_left(word)
 assert len(vector) == len(word) + 1
 assert vector == [10,10,10,10,10,10,10,10,10,10,1]
 
 word = 'GAAAAAAAAA'
-vector = hh.LLongestGap.get_jump_vector(word)
+vector = gap_util.get_jump_vector_left(word)
 assert len(vector) == len(word) + 1
 assert vector == [2,2,1,1,1,1,1,1,1,1,1]
 
@@ -85,17 +86,17 @@ assert h.match_skip() == 2
 # Test vector
 
 word = 'ACGACGACGACG'
-vector = hh.RLongestGap.get_jump_vector(word)
+vector = gap_util.get_jump_vector_right(word)
 assert len(vector) == len(word) + 1
 assert vector == [3,3,3,3,3,3,3,3,3,3,2,1,1]
 
 word = 'AAAAAAAAAG'
-vector = hh.RLongestGap.get_jump_vector(word)
+vector = gap_util.get_jump_vector_right(word)
 assert len(vector) == len(word) + 1
 assert vector == [2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1]
 
 word = 'GAAAAAAAAA'
-vector = hh.RLongestGap.get_jump_vector(word)
+vector = gap_util.get_jump_vector_right(word)
 assert len(vector) == len(word) + 1
 assert vector == [10, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 

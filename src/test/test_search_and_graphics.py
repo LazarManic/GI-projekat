@@ -68,4 +68,4 @@ for i, word in enumerate(words):
 
 # by human eye double check if data in table and graph is correct
 import business_logic.util.graph as g
-#g.Graph().Drive(data_metrics)
+g.Graph().Drive(data_metrics)
